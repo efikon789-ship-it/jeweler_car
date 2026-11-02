@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+
+{% block title %}ЮвелирКар — Кузовной ремонт в Краснодаре{% endblock %}
+{% block meta_description %}Кузовной ремонт, покраска и удаление вмятин в Краснодаре. Гарантия до 24 месяцев, своя камера и стапель. Рейтинг 4,8 на Яндекс.Картах. Ростовское шоссе, 34/12.{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════ ГЛАВНЫЙ ЭКРАН ═══════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-placeholder-img">
+      [ Здесь должна быть фотография — фасад центра или процесс ремонта ]
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">ЮвелирКар</h1>
+    <p class="hero-subtitle">Центр кузовного ремонта в Краснодаре</p>
+    <p class="hero-desc">
+      Кузовной ремонт, покраска и удаление вмятин — полный цикл в одном цехе.<br>
+      Гарантия до 24 месяцев. Оценка по фото до визита.
+    </p>
+    <button class="hero-btn fab-trigger">Записаться</button>
+  </div>
+</section>
+
+<!-- ═══════════════ УСЛУГИ ═══════════════ -->
+<section class="section services-section" id="services">
+  <div class="container">
+    <h2 class="section-title">Услуги</h2>
+    <p class="section-sub">Выберите направление — рассчитаем стоимость по фото и подскажем оптимальный вариант</p>
+    <div class="services-grid">
+      {% for service in services %}
+      <a href="/uslugi/{{ service.slug }}" class="service-card">
+        <div class="service-icon-wrap">
+          <div class="service-icon-placeholder">⚙</div>
+        </div>
+        <h3 class="service-card-title">{{ service.title }}</h3>
+        <p class="service-card-short">{{ service.short }}</p>
+        <ul class="service-card-list">
+          {% for item in service.items %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+        <span class="service-card-link">Подробнее →</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ НАШИ РАБОТЫ ═══════════════ -->
+<section class="section works-section" id="works">
+  <div class="container">
+    <h2 class="section-title">Наши работы</h2>
+    <p class="section-sub">Реальные результаты ремонта — фотографии до и после</p>
+    <div class="works-grid">
+      <!-- Заглушки — заменить на реальные фотографии -->
+      {% for i in range(1, 7) %}
+      <div class="work-card">
+        <div class="work-before-after">
+          <div class="work-img-wrap">
+            <div class="work-img-placeholder">[ Фото ДО — работа {{ i }} ]</div>
+            <span class="work-label">До</span>
+          </div>
+          <div class="work-img-wrap">
+            <div class="work-img-placeholder">[ Фото ПОСЛЕ — работа {{ i }} ]</div>
+            <span class="work-label">После</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="works-note placeholder-text">[ Заглушка: заменить на реальные фотографии выполненных работ — см. MISSING_DATA.md ]</p>
+  </div>
+</section>
+
+<!-- ═══════════════ О КОМПАНИИ ═══════════════ -->
+<section class="section about-section" id="about">
+  <div class="container">
+    <h2 class="section-title">О компании</h2>
+    <p class="section-sub">Кузовной центр ЮвелирКар в Краснодаре — честный расчёт, своё оборудование и результат, который видно</p>
+    <div class="advantages-grid">
+      <div class="advantage-card">
+        <div class="advantage-icon">🏭</div>
+        <h3>Своя камера и стапель</h3>
+        <p>Не отдаём машину «на сторону»: покраска, геометрия и сложный ремонт — на собственной площадке под нашим контролем.</p>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-icon">📋</div>
+        <h3>Гарантия до 24 месяцев</h3>
+        <p>Даём письменную гарантию на работы и материалы — вы спокойны за результат после выдачи автомобиля.</p>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-icon">⭐</div>
+        <h3>4,8 на Яндекс.Картах</h3>
+        <p>139+ живых отзывов клиентов из Краснодара — можно проверить рейтинг и фото работ до обращения.</p>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-icon">📷</div>
+        <h3>Оценка по фото</h3>
+        <p>Пришлите фото повреждений — рассчитаем ориентировочную цену без визита и без навязанных «сюрпризов».</p>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-icon">💰</div>
+        <h3>Честные прозрачные цены</h3>
+        <p>Фиксируем объём работ заранее. Без скрытых доплат и «пока разобрали — нашлось ещё на 50 тысяч».</p>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-icon">⏱</div>
+        <h3>Сроки, которые соблюдаем</h3>
+        <p>Локальный ремонт и бамперы — часто за 1 день. Сложные случаи — с понятным графиком и статусом работ.</p>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-icon">🎨</div>
+        <h3>Точный подбор цвета</h3>
+        <p>Компьютерный подбор эмали — стык старого и нового покрытия незаметен, машина выглядит цельно.</p>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-icon">📍</div>
+        <h3>Удобно в Краснодаре</h3>
+        <p>Ростовское шоссе, 34/12. Пн–Сб 09:00–19:00. Можно приехать или записаться на расчёт по телефону.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ ОТЗЫВЫ ═══════════════ -->
+<section class="section reviews-section" id="reviews">
+  <div class="container">
+    <h2 class="section-title">Отзывы</h2>
+    <p class="section-sub">Реальные отзывы с Яндекс.Карт · рейтинг 4,8 · 139+ отзывов</p>
+    <div class="reviews-widget-wrap">
+      <div style="width:100%;max-width:600px;height:800px;overflow:hidden;position:relative;margin:0 auto;">
+        <iframe
+          style="width:100%;height:100%;border:1px solid #333;border-radius:8px;box-sizing:border-box"
+          src="https://yandex.ru/maps-reviews-widget/1752069529?comments"
+          title="Отзывы ЮвелирКар на Яндекс.Картах"
+        ></iframe>
+        <a href="https://yandex.ru/maps/org/yuvelirkar/1752069529/"
+           target="_blank"
+           rel="noopener"
+           style="box-sizing:border-box;text-decoration:none;color:#b3b3b3;font-size:10px;font-family:YS Text,sans-serif;padding:0 20px;position:absolute;bottom:8px;width:100%;text-align:center;left:0;overflow:hidden;text-overflow:ellipsis;display:block;max-height:14px;white-space:nowrap;padding:0 16px;box-sizing:border-box">
+          ЮвелирКар на карте Краснодара — Яндекс Карты
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ КОНТАКТЫ ═══════════════ -->
+<section class="section contacts-section" id="contacts">
+  <div class="container">
+    <h2 class="section-title">Контакты</h2>
+    <div class="contacts-layout">
+      <div class="contacts-info">
+        <div class="contact-row">
+          <span class="contact-label">Телефон</span>
+          <a href="tel:PLACEHOLDER" class="contact-value">
+            <span class="placeholder-text">[ Номер телефона ]</span>
+          </a>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Адрес</span>
+          <span class="contact-value">Ростовское шоссе, 34/12, Краснодар</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Режим работы</span>
+          <span class="contact-value">Пн–Сб 09:00–19:00<br>Воскресенье — выходной</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Оплата</span>
+          <span class="contact-value">Наличными, картой, банковским переводом</span>
+        </div>
+        <button class="contacts-cta fab-trigger">Записаться</button>
+      </div>
+      <div class="contacts-map">
+        <!-- Виджет карты Яндекс -->
+        <div style="position:relative;overflow:hidden;">
+          <a href="https://yandex.ru/maps/org/yuvelirkar/1752069529/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">ЮвелирКар</a>
+          <a href="https://yandex.ru/maps/35/krasnodar/category/auto_body_repair/184105252/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Кузовной ремонт в Краснодаре</a>
+          <iframe
+            src="https://yandex.ru/map-widget/v1/?ll=38.992683%2C45.115081&mode=search&oid=1752069529&ol=biz&sctx=ZAAAAAgBEAAaKAoSCYwubw7XfENAEZv%2B7EeKhEZAEhIJj3IwmwDD3j8RiBIteTwtyT8iBgABAgMEBSgKOABAI0gBagJydZ0BzczMPaABAKgBAL0BxKkPh8IBBZnrucMGggIT0Y7QstC10LvQuNGAINC60LDRgIoCAJICAJoCDGRlc2t0b3AtbWFwcw%3D%3D&sll=39.000923%2C45.115081&source=serp_navig&sspn=0.037958%2C0.015210&text=%D1%8E%D0%B2%D0%B5%D0%BB%D0%B8%D1%80%20%D0%BA%D0%B0%D1%80&utm_source=share&z=15"
+            width="100%"
+            height="400"
+            frameborder="1"
+            allowfullscreen="true"
+            style="position:relative;border-radius:8px;"
+            title="ЮвелирКар на карте"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

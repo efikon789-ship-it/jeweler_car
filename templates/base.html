@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}ЮвелирКар — Центр кузовного ремонта в Краснодаре{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Кузовной ремонт, покраска и удаление вмятин в Краснодаре. Гарантия до 24 месяцев, своя камера и стапель. Ростовское шоссе, 34/12. Пн–Сб 09:00–19:00.{% endblock %}">
+  <link rel="icon" type="image/svg+xml" href="/static/img/favicon.svg">
+  <link rel="stylesheet" href="/static/css/main.css">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  <!-- ═══════════════ ШАПКА (скрывается при прокрутке) ═══════════════ -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <span class="header-brand">ЮВЕЛИРКАР</span>
+      <span class="header-sub">ЦЕНТР КУЗОВНОГО РЕМОНТА</span>
+    </div>
+  </header>
+
+  <!-- ═══════════════ ЗАКРЕПЛЁННАЯ НАВИГАЦИЯ ═══════════════ -->
+  <nav class="main-nav" id="main-nav">
+    <div class="nav-inner">
+      <a href="{% if request.url.path == '/' %}#home{% else %}/#home{% endif %}" class="nav-link">Главная</a>
+      <a href="{% if request.url.path == '/' %}#services{% else %}/#services{% endif %}" class="nav-link">Услуги</a>
+      <a href="{% if request.url.path == '/' %}#works{% else %}/#works{% endif %}" class="nav-link">Наши работы</a>
+      <a href="{% if request.url.path == '/' %}#about{% else %}/#about{% endif %}" class="nav-link">О компании</a>
+      <a href="{% if request.url.path == '/' %}#reviews{% else %}/#reviews{% endif %}" class="nav-link">Отзывы</a>
+      <a href="{% if request.url.path == '/' %}#contacts{% else %}/#contacts{% endif %}" class="nav-link">Контакты</a>
+      <button class="nav-btn-mobile" id="nav-toggle" aria-label="Меню">&#9776;</button>
+    </div>
+    <!-- Мобильное выпадающее меню -->
+    <div class="nav-mobile-menu" id="nav-mobile-menu">
+      <a href="{% if request.url.path == '/' %}#home{% else %}/#home{% endif %}" class="nav-mobile-link">Главная</a>
+      <a href="{% if request.url.path == '/' %}#services{% else %}/#services{% endif %}" class="nav-mobile-link">Услуги</a>
+      <a href="{% if request.url.path == '/' %}#works{% else %}/#works{% endif %}" class="nav-mobile-link">Наши работы</a>
+      <a href="{% if request.url.path == '/' %}#about{% else %}/#about{% endif %}" class="nav-mobile-link">О компании</a>
+      <a href="{% if request.url.path == '/' %}#reviews{% else %}/#reviews{% endif %}" class="nav-mobile-link">Отзывы</a>
+      <a href="{% if request.url.path == '/' %}#contacts{% else %}/#contacts{% endif %}" class="nav-mobile-link">Контакты</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════ ОСНОВНОЙ КОНТЕНТ ═══════════════ -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ═══════════════ ПОДВАЛ ═══════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-brand">ЮвелирКар</div>
+        <div class="footer-tagline">Центр кузовного ремонта</div>
+        <div class="footer-legal">
+          <span class="placeholder-text">[ Здесь должно быть юридическое название организации — ИП / ООО ]</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-heading">Контакты</div>
+        <a href="tel:PLACEHOLDER" class="footer-contact">
+          <span class="placeholder-text">[ Номер телефона ]</span>
+        </a>
+        <div class="footer-address">Ростовское шоссе, 34/12, Краснодар</div>
+        <div class="footer-hours">Пн–Сб 09:00–19:00</div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-heading">Услуги</div>
+        <nav class="footer-nav">
+          {% for service in services %}
+          <a href="/uslugi/{{ service.slug }}" class="footer-nav-link">{{ service.title }}</a>
+          {% endfor %}
+        </nav>
+      </div>
+      <div class="footer-col">
+        <div class="footer-heading">Разделы</div>
+        <nav class="footer-nav">
+          <a href="/#services" class="footer-nav-link">Услуги</a>
+          <a href="/#works" class="footer-nav-link">Наши работы</a>
+          <a href="/#about" class="footer-nav-link">О компании</a>
+          <a href="/#reviews" class="footer-nav-link">Отзывы</a>
+          <a href="/#contacts" class="footer-nav-link">Контакты</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 ЮвелирКар. Все права защищены.</span>
+    </div>
+  </footer>
+
+  <!-- ═══════════════ ЗАКРЕПЛЁННАЯ КНОПКА «ЗАПИСАТЬСЯ» ═══════════════ -->
+  <button class="fab-btn" id="fab-btn" aria-label="Записаться">
+    Записаться
+  </button>
+
+  <!-- ═══════════════ МОДАЛЬНОЕ ОКНО ═══════════════ -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-label="Записаться">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modal-close" aria-label="Закрыть">&times;</button>
+
+      <!-- Экран выбора действия -->
+      <div class="modal-screen" id="modal-screen-choose">
+        <h2 class="modal-title">Как вы хотите обратиться?</h2>
+        <div class="modal-actions">
+          <button class="modal-action-btn" id="btn-contact">
+            <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.7A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            Связаться с нами
+          </button>
+          <button class="modal-action-btn" id="btn-form">
+            <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+            </svg>
+            Оставить заявку
+          </button>
+        </div>
+      </div>
+
+      <!-- Экран контактов -->
+      <div class="modal-screen hidden" id="modal-screen-contact">
+        <button class="modal-back" id="btn-back-contact">← Назад</button>
+        <h2 class="modal-title">Связаться с нами</h2>
+        <div class="contact-list">
+          <a href="tel:PLACEHOLDER" class="contact-item contact-phone">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.7A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            <span class="placeholder-text">[ Номер телефона ]</span>
+          </a>
+          <a href="PLACEHOLDER_TG" class="contact-item contact-telegram" target="_blank" rel="noopener">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.26 13.835l-2.956-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.884.724z"/>
+            </svg>
+            <span class="placeholder-text">[ Ссылка Telegram ]</span>
+          </a>
+          <a href="PLACEHOLDER_WA" class="contact-item contact-whatsapp" target="_blank" rel="noopener">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            <span class="placeholder-text">[ Ссылка WhatsApp ]</span>
+          </a>
+          <a href="PLACEHOLDER_MAX" class="contact-item contact-max" target="_blank" rel="noopener">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <rect width="24" height="24" rx="5" fill="#0077FF"/>
+              <text x="4" y="17" font-size="12" font-weight="bold" fill="white" font-family="sans-serif">MAX</text>
+            </svg>
+            <span class="placeholder-text">[ Ссылка MAX ]</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Экран формы заявки -->
+      <div class="modal-screen hidden" id="modal-screen-form">
+        <button class="modal-back" id="btn-back-form">← Назад</button>
+        <h2 class="modal-title">Оставить заявку</h2>
+        <form class="app-form" id="app-form" novalidate>
+          <div class="form-group">
+            <label for="f-name">Имя <span class="optional">(необязательно)</span></label>
+            <input type="text" id="f-name" name="name" placeholder="Ваше имя" autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label for="f-phone">Телефон <span class="required">*</span></label>
+            <input type="tel" id="f-phone" name="phone" placeholder="+7 (900) 000-00-00" required autocomplete="tel">
+            <span class="form-error" id="error-phone"></span>
+          </div>
+          <div class="form-group">
+            <label for="f-make">Марка автомобиля <span class="required">*</span></label>
+            <input type="text" id="f-make" name="car_make" placeholder="Toyota, Kia, BMW..." required autocomplete="off">
+            <span class="form-error" id="error-make"></span>
+          </div>
+          <div class="form-group">
+            <label for="f-model">Модель автомобиля <span class="required">*</span></label>
+            <input type="text" id="f-model" name="car_model" placeholder="Camry, Sportage, X5..." required autocomplete="off">
+            <span class="form-error" id="error-model"></span>
+          </div>
+          <div class="form-group">
+            <label for="f-service">Услуга</label>
+            <select id="f-service" name="service">
+              <option value="Другое">— Выберите услугу —</option>
+              <option value="Кузовной ремонт">Кузовной ремонт</option>
+              <option value="Покраска">Покраска</option>
+              <option value="Удаление вмятин без покраски">Удаление вмятин без покраски</option>
+              <option value="Другое">Другое</option>
+            </select>
+          </div>
+          <div class="form-consent">
+            Нажимая «Отправить», вы соглашаетесь на обработку персональных данных в соответствии с
+            <a href="#" class="consent-link">политикой конфиденциальности</a>.
+          </div>
+          <button type="submit" class="form-submit-btn" id="form-submit-btn">Отправить заявку</button>
+          <div class="form-status" id="form-status"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/main.js"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
