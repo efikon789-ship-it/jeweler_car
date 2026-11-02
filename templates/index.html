@@ -53,23 +53,21 @@
     <h2 class="section-title">Наши работы</h2>
     <p class="section-sub">Реальные результаты ремонта — фотографии до и после</p>
     <div class="works-grid">
-      <!-- Заглушки — заменить на реальные фотографии -->
-      {% for i in range(1, 7) %}
+      {% for work in works %}
       <div class="work-card">
         <div class="work-before-after">
           <div class="work-img-wrap">
-            <div class="work-img-placeholder">[ Фото ДО — работа {{ i }} ]</div>
-            <span class="work-label">До</span>
+            <img src="/static/img/{{ work.do }}" alt="До ремонта" class="work-img" loading="lazy">
+            <span class="work-label work-label--before">До</span>
           </div>
           <div class="work-img-wrap">
-            <div class="work-img-placeholder">[ Фото ПОСЛЕ — работа {{ i }} ]</div>
-            <span class="work-label">После</span>
+            <img src="/static/img/{{ work.pos }}" alt="После ремонта" class="work-img" loading="lazy">
+            <span class="work-label work-label--after">После</span>
           </div>
         </div>
       </div>
       {% endfor %}
     </div>
-    <p class="works-note placeholder-text">[ Заглушка: заменить на реальные фотографии выполненных работ — см. MISSING_DATA.md ]</p>
   </div>
 </section>
 

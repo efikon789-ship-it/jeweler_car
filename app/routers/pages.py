@@ -52,11 +52,21 @@ SERVICES = [
 ]
 
 
+WORKS = [
+    {"do": "do1.jpg", "pos": "pos1.jpg"},
+    {"do": "do2.jpg", "pos": "pos2.jpg"},
+    {"do": "do3.jpg", "pos": "pos3.jpg"},
+    {"do": "do4.jpg", "pos": "pos4.jpg"},
+    {"do": "do5.jpg", "pos": "pos5.jpg"},
+    {"do": "do6.jpg", "pos": "pos6.jpg"},
+]
+
+
 @router.get("/", response_class=HTMLResponse)
 async def index(request: Request):
     return templates.TemplateResponse(
         "index.html",
-        {"request": request, "services": SERVICES},
+        {"request": request, "services": SERVICES, "works": WORKS},
     )
 
 
