@@ -81,3 +81,19 @@ async def service_page(request: Request, slug: str):
         "services/service.html",
         {"request": request, "service": service, "services": SERVICES},
     )
+
+
+@router.get("/privacy-policy", response_class=HTMLResponse)
+async def privacy_policy(request: Request):
+    return templates.TemplateResponse(
+        "legal/privacy.html",
+        {"request": request, "services": SERVICES},
+    )
+
+
+@router.get("/consent", response_class=HTMLResponse)
+async def consent(request: Request):
+    return templates.TemplateResponse(
+        "legal/consent.html",
+        {"request": request, "services": SERVICES},
+    )
