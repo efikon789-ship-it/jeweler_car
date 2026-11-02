@@ -391,46 +391,6 @@ section[id], div[id] {
 /* ── Отзывы ── */
 .reviews-widget-wrap { display: flex; justify-content: center; }
 
-.reviews-iframe-wrap {
-  width: 100%;
-  max-width: 600px;
-  height: 800px;
-  overflow: hidden;
-  position: relative;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  /* Инвертируем цвета iframe, затем возвращаем оттенок —
-     белый фон становится тёмным, текст светлым              */
-  filter: invert(1) hue-rotate(180deg);
-}
-
-.reviews-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  box-sizing: border-box;
-  /* Контринвертируем изображения внутри виджета,
-     чтобы фото звёздочек и аватаров выглядели нормально */
-  filter: invert(1) hue-rotate(180deg);
-}
-
-.reviews-iframe-link {
-  text-decoration: none;
-  color: var(--text-muted);
-  font-size: 10px;
-  font-family: YS Text, sans-serif;
-  position: absolute;
-  bottom: 8px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: 0 16px;
-  box-sizing: border-box;
-}
-
 /* ── Контакты ── */
 .contacts-layout {
   display: grid;
