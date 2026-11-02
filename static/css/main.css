@@ -456,7 +456,7 @@ section[id], div[id] {
   padding-bottom: 40px;
 }
 .footer-brand { font-size: 1.3rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
-.footer-tagline { font-size: .8rem; color: var(--text-muted); margin-bottom: 12px; }
+.footer-tagline { font-size: .8rem; color: var(--text-muted); margin-bottom: 12px; max-width: 220px; line-height: 1.5; }
 .footer-legal { font-size: .78rem; color: var(--text-muted); }
 .footer-heading { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); margin-bottom: 12px; }
 .footer-contact { display: block; margin-bottom: 8px; color: var(--text); font-size: .95rem; }
