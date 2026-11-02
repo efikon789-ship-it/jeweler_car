@@ -3,21 +3,31 @@
 Заявки не сохраняются в базу данных — только пересылаются руководителю.
 """
 import httpx
+from datetime import datetime, timezone, timedelta
 from app.config import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+
+MSK = timezone(timedelta(hours=3))
 
 
 def build_message(data: dict) -> str:
     """Формирует текст сообщения для Telegram."""
-    lines = ["📋 *Новая заявка с сайта ЮвелирКар*", ""]
+    now = datetime.now(MSK).strftime("%d.%m.%Y %H:%M")
+
+    lines = [
+        "🔔 *Новая заявка с сайта ЮвелирКар*",
+        f"🕐 {now} (МСК)",
+        "",
+    ]
 
     if data.get("name"):
-        lines.append(f"👤 Имя: {data['name']}")
+        lines.append(f"👤 *Имя:* {data['name']}")
 
-    lines.append(f"📞 Телефон: {data['phone']}")
-    lines.append(f"🚗 Автомобиль: {data['car_make']} {data['car_model']}")
+    lines.append(f"📞 *Телефон:* `{data['phone']}`")
+    lines.append(f"🚗 *Автомобиль:* {data['car_make']} {data['car_model']}")
 
-    if data.get("service"):
-        lines.append(f"🔧 Услуга: {data['service']}")
+    service = data.get("service", "")
+    if service and service != "Другое":
+        lines.append(f"🔧 *Услуга:* {service}")
 
     return "\n".join(lines)
 
