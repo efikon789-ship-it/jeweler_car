@@ -189,6 +189,13 @@ section[id], div[id] {
   inset: 0;
   z-index: 0;
 }
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  display: block;
+}
 .hero-placeholder-img {
   width: 100%;
   height: 100%;
@@ -206,7 +213,7 @@ section[id], div[id] {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(0,0,0,.85) 40%, rgba(0,0,0,.3) 100%);
+  background: linear-gradient(to right, rgba(0,0,0,.75) 0%, rgba(0,0,0,.45) 50%, rgba(0,0,0,.15) 100%);
   z-index: 1;
 }
 .hero-content {
@@ -595,9 +602,12 @@ section[id], div[id] {
 }
 .contact-item:hover { border-color: var(--accent); background: rgba(232,98,10,.07); color: var(--white); }
 .contact-icon { width: 26px; height: 26px; flex-shrink: 0; }
+.contact-icon-img { width: 26px; height: 26px; flex-shrink: 0; border-radius: 4px; object-fit: cover; }
 .contact-telegram .contact-icon { color: #2aabee; }
 .contact-whatsapp .contact-icon { color: #25d366; }
 .contact-phone .contact-icon { color: var(--accent); }
+
+
 
 /* Форма */
 .app-form { display: flex; flex-direction: column; gap: 16px; }
